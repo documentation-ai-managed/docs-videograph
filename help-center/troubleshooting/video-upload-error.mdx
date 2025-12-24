@@ -1,0 +1,28 @@
+---
+title: Video Upload Error
+description: Fix failed uploads in VideoGraph.
+---
+
+## Symptoms
+
+- Upload gets stuck or fails
+- Error: "Upload failed"
+
+## Causes
+
+- File too large (>2GB)
+- Unsupported format
+
+## Solution
+
+<Steps>
+  <Step title="Check file size">
+    Files must be under 2GB.
+  </Step>
+  <Step title="Convert format">
+    Use MP4, MOV, or AVI. Unsupported formats will fail.
+  </Step>
+  <Step title="Retry upload">
+    Try uploading again after checks.
+  </Step>
+</Steps>

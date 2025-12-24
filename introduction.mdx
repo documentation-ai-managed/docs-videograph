@@ -1,0 +1,131 @@
+---
+title: Welcome to VideoGraph
+description: Discover VideoGraph, a powerful documentation platform for organizing and managing your project documentation with ease.
+---
+
+## Overview
+
+VideoGraph empowers you to create, organize, and manage comprehensive documentation for your projects effortlessly. Build structured knowledge bases with an intuitive interface, collaborative editing, and powerful search capabilities. Whether you document APIs, user guides, or internal wikis, VideoGraph scales with your needs.
+
+## Key Features
+
+Explore the core capabilities that make VideoGraph your go-to documentation solution.
+
+<Columns cols={3}>
+  <Card title="Rich Editor" icon="edit-3" href="#rich-editor">
+    Craft beautiful docs with Markdown, MDX components, and live previews. Embed code, images, and diagrams seamlessly.
+  </Card>
+  <Card title="Version Control" icon="git-branch" href="#version-control">
+    Track changes, revert updates, and maintain history for every page without complexity.
+  </Card>
+  <Card title="Collaboration" icon="users" href="#collaboration">
+    Invite team members, assign roles, and enable real-time editing for efficient teamwork.
+  </Card>
+  <Card title="Advanced Search" icon="search" href="#search">
+    Find content instantly with full-text search, tags, and filters across your entire docs site.
+  </Card>
+  <Card title="Custom Domains" icon="globe" href="#domains">
+    Publish to your own domain with SEO optimization and analytics integration.
+  </Card>
+  <Card title="Integrations" icon="plug" href="#integrations">
+    Connect with GitHub, Slack, and more to automate workflows and sync content.
+  </Card>
+</Columns>
+
+## Quick Start
+
+Get up and running in minutes with these essential steps.
+
+<Steps>
+  <Step title="Sign Up" icon="user-plus">
+    Create your free account at `https://app.videograph.com/signup`.
+
+    <Callout kind="tip">
+      Use your work email for team invites.
+    </Callout>
+  </Step>
+  <Step title="Create Workspace" icon="folder-plus">
+    Set up a new workspace for your project.
+
+````tsx
+// Example: Initialize workspace via API (optional)
+const workspace = await fetch('https://api.videograph.com/workspaces', {
+  method: 'POST',
+  headers: {
+    'Authorization': `Bearer ${YOUR_API_KEY}`,
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({ name: 'My Project Docs' }),
+});
+````
+  </Step>
+  <Step title="Add First Page" icon="plus">
+    Click "New Page" and start writing with Markdown or our visual editor.
+  </Step>
+  <Step title="Publish" icon="globe">
+    Preview, then publish your site live.
+  </Step>
+</Steps>
+
+<CodeGroup tabs="CLI,API">
+````bash
+# Install VideoGraph CLI
+npm install -g @videograph/cli
+
+# Create new docs site
+videograph init my-docs-site
+cd my-docs-site
+videograph dev
+````
+
+````javascript
+// API setup example
+import { VideoGraph } from '@videograph/sdk';
+
+const client = new VideoGraph({ apiKey: 'YOUR_API_KEY' });
+await client.pages.create({
+  title: 'Welcome',
+  content: '# Hello VideoGraph\nStart documenting here.',
+});
+````
+</CodeGroup>
+
+## Why Choose VideoGraph
+
+<Callout kind="success">
+  VideoGraph stands out with its balance of simplicity and power. You get enterprise features like role-based access and webhooks without steep learning curves or high costs.
+</Callout>
+
+- **Intuitive for all skill levels**: From solo developers to large teams.
+- **Performance optimized**: Lightning-fast search and rendering.
+- **Extensible**: Custom themes, plugins, and API-first design.
+
+## Next Steps
+
+Dive deeper into VideoGraph.
+
+<Columns cols={2}>
+  <Card title="Quickstart Guide" icon="zap" href="/quickstart">
+    Build your first full docs site.
+  </Card>
+  <Card title="Authentication" icon="shield" href="/authentication">
+    Secure your workspace with API keys and SSO.
+  </Card>
+  <Card title="Customization" icon="palette" href="/customization">
+    Tailor themes and layouts.
+  </Card>
+  <Card title="Changelog" icon="git-commit" href="/changelog">
+    Stay updated with latest releases.
+  </Card>
+</Columns>
+
+<Expandable title="Frequently Asked Questions" default-open="true">
+  ### How does pricing work?
+  Start free, upgrade for teams and custom domains.
+
+  ### Can I import from other tools?
+  Yes, migrate from Notion, GitBook, or Markdown files via CLI.
+
+  ### Is VideoGraph open source?
+  Core SDK is MIT-licensed on GitHub.
+</Expandable>

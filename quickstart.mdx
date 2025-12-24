@@ -1,0 +1,127 @@
+---
+title: Getting Started with VideoGraph
+description: Set up your VideoGraph account and create your first documentation space in just a few minutes.
+---
+
+## Prerequisites
+
+Before you begin, ensure you have:
+
+<Callout kind="info">
+
+- A modern web browser like Chrome, Firefox, or Safari
+- An email address for account verification
+- Optional: Documents ready to upload (PDF, DOCX, or Markdown files)
+
+</Callout>
+
+<Callout kind="tip">
+
+VideoGraph works best on desktop for the initial setup, though mobile support is available for viewing.
+
+</Callout>
+
+## Create Your Account
+
+Sign up for VideoGraph in under a minute.
+
+<Steps>
+  <Step title="Visit the Dashboard" icon="monitor">
+    Navigate to [https://app.videograph.com](https://app.videograph.com) and click **Sign Up**.
+  </Step>
+  <Step title="Enter Details" icon="user">
+    Provide your email, create a strong password, and complete the CAPTCHA.
+  </Step>
+  <Step title="Verify Email" icon="mail">
+    Check your inbox for the verification link and click it to activate your account.
+  </Step>
+  <Step title="Log In" icon="log-in">
+    Return to the dashboard and sign in with your credentials.
+  </Step>
+</Steps>
+
+## Create a New Project Space
+
+Organize your documentation by creating a dedicated space.
+
+<Steps>
+  <Step title="Access Spaces" icon="folder">
+    From the dashboard, click **New Space** in the top-right corner.
+  </Step>
+  <Step title="Name Your Space" icon="edit-3">
+    Enter a name like `My Project Docs` and select a visibility (Public or Private).
+  </Step>
+  <Step title="Customize Settings" icon="settings">
+    Add a description and choose the brand color `#3B82F6` for your space.
+  </Step>
+  <Step title="Save and Enter" icon="check-circle">
+    Click **Create** to open your new space.
+  </Step>
+</Steps>
+
+## Upload Initial Documents
+
+Add content to your space using multiple methods.
+
+<Tabs>
+  <Tab title="Drag & Drop" icon="upload">
+    Open your space and drag files directly onto the upload area.
+    
+    Supported formats: PDF, DOCX, MD, TXT (up to `50MB` per file).
+  </Tab>
+  <Tab title="File Picker" icon="folder-open">
+    Click **Upload** > **Select Files** and choose from your local storage.
+  </Tab>
+  <Tab title="API Upload" icon="code">
+    Use the REST API for automation.
+    
+    ````bash
+    curl -X POST https://api.videograph.com/v1/spaces/{SPACE_ID}/documents \
+      -H "Authorization: Bearer YOUR_API_KEY" \
+      -F "file=@/path/to/document.pdf"
+    ````
+    
+    Replace `{SPACE_ID}` with your space ID and `YOUR_API_KEY` from settings.
+  </Tab>
+</Tabs>
+
+## Basic Interface Tour
+
+Familiarize yourself with key areas:
+
+<Columns cols={3}>
+  <Card title="Sidebar" icon="menu" href="#sidebar">
+    Navigate spaces, documents, and settings.
+  </Card>
+  <Card title="Editor" icon="edit" href="#editor">
+    Real-time editing with preview and version history.
+  </Card>
+  <Card title="Search" icon="search" href="#search">
+    Full-text search across all documents.
+  </Card>
+</Columns>
+
+<Expandable title="Advanced Interface Details" default-open="false">
+
+- **Sidebar**: Expand to access collaborators and integrations.
+- **Editor**: Supports Markdown, rich text, and embeds.
+- **Search**: Filters by tags, dates, or content.
+
+</Expandable>
+
+## Next Steps
+
+<Callout kind="success">
+
+Congratulations! You've set up VideoGraph. Explore more features:
+
+</Callout>
+
+<Columns cols={2}>
+  <Card title="Authentication" icon="shield" href="/authentication">
+    Secure your spaces with API keys and SSO.
+  </Card>
+  <Card title="Advanced Editing" icon="book-open" href="/guides/editing">
+    Master Markdown and custom components.
+  </Card>
+</Columns>

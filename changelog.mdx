@@ -1,0 +1,144 @@
+---
+title: Changelog
+description: Track the latest updates, improvements, and bug fixes in VideoGraph.
+---
+
+## Recent Updates
+
+<Update label="2024-10-15" description="v1.2.0" tags={["feature", "bugfix"]}>
+
+## New Features
+
+- Added real-time collaboration for video graph editing, allowing multiple users to edit workflows simultaneously.
+- Introduced node-based video effects library with GPU acceleration support.
+- New export presets for social media platforms including TikTok and Instagram Reels.
+
+## Improvements
+
+- Enhanced rendering performance by `>30%` for complex graphs with 50+ nodes.
+- Improved UI responsiveness during video preview scrubbing.
+
+## Bug Fixes
+
+- Fixed crash when importing corrupted MP4 files.
+- Resolved synchronization issues in multi-user sessions.
+
+</Update>
+
+<Update label="2024-09-20" description="v1.1.0" tags={["feature", "improvement"]}>
+
+## New Features
+
+- Integrated AI-powered auto-node suggestion based on video content analysis.
+- Added webhook support for custom notifications on render completion.
+
+## Improvements
+
+- Optimized memory usage during long video processing tasks.
+- Updated dependency scanner to support Node.js 20+.
+
+</Update>
+
+<Update label="2024-08-10" description="v1.0.0" tags={["breaking", "feature"]}>
+
+## Breaking Changes
+
+- Removed legacy XML import format in favor of JSON-based graphs.
+
+## New Features
+
+- Core node-graph editor for building video processing pipelines.
+- Built-in video codecs for H.264, H.265, and VP9.
+- Dashboard for monitoring render jobs at `https://dashboard.example.com`.
+
+</Update>
+
+## Upgrade Guide
+
+Follow these steps to upgrade VideoGraph to the latest version.
+
+<Steps>
+  <Step title="Backup Your Project" icon="database">
+
+  Export your current graphs to avoid data loss.
+
+  ```bash
+  videograph export --project my-video-graph.json
+  ```
+
+  </Step>
+  <Step title="Update Package" icon="package">
+
+  <CodeGroup tabs="npm,yarn">
+
+  ````bash
+  npm install videograph@latest
+  ````
+
+  ````bash
+  yarn add videograph@latest
+  ````
+
+  </CodeGroup>
+
+  </Step>
+  <Step title="Migrate Config" icon="settings">
+
+  Update your config file for new webhook support.
+
+  ````json
+  {
+    "webhooks": {
+      "renderComplete": "https://your-webhook-url.com/webhook"
+    },
+    "apiKey": "YOUR_API_KEY"
+  }
+  ````
+
+  </Step>
+  <Step title="Test Render" icon="play">
+
+  Run a test pipeline to verify compatibility.
+
+  ```bash
+  videograph run --graph my-video-graph.json --preview
+  ```
+
+  </Step>
+</Steps>
+
+<Callout kind="tip">
+
+Subscribe to releases on [GitHub](https://github.com/example/videograph) to stay informed. Enable notifications for `https://github.com/example/videograph/releases`.
+
+</Callout>
+
+## Upcoming Roadmap
+
+<Columns cols={3}>
+
+  <Card title="Q4 2024" icon="zap" horizontal>
+
+  Real-time video streaming integration.
+
+  </Card>
+
+  <Card title="Q1 2025" icon="shield" horizontal>
+
+  Enterprise security features like SSO.
+
+  </Card>
+
+  <Card title="Q2 2025" icon="trending-up" horizontal>
+
+  Cloud rendering clusters.
+
+  </Card>
+
+</Columns>
+
+| Version | Release Date | Key Tags          |
+|---------|--------------|-------------------|
+| v1.2.0  | 2024-10-15  | feature, bugfix  |
+| v1.1.0  | 2024-09-20  | feature          |
+| v1.0.0  | 2024-08-10  | breaking, feature|

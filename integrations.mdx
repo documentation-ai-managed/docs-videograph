@@ -1,0 +1,191 @@
+---
+title: Integrations and Extensions
+description: Connect VideoGraph with third-party tools to enhance your documentation workflow and automate processes.
+---
+
+## Overview
+
+VideoGraph integrates seamlessly with popular tools to streamline your documentation workflow. Sync changes from GitHub repositories, receive real-time updates via webhooks, export content to various formats, and build custom extensions using the API. These integrations help you automate publishing, notifications, and data portability.
+
+<Columns cols={2}>
+  <Card title="GitHub Sync" icon="github" href="#github-integration">
+    Automatically pull docs from your repos and keep them in sync.
+  </Card>
+  <Card title="Webhooks" icon="zap" href="#webhooks">
+    Trigger actions on doc updates, publishes, and more.
+  </Card>
+  <Card title="Exports" icon="download" href="#exports">
+    Generate PDFs, Markdown, or HTML from your docs.
+  </Card>
+  <Card title="API Extensions" icon="code" href="#api">
+    Programmatically manage docs with full API access.
+  </Card>
+</Columns>
+
+## GitHub and Version Control Integration
+
+Connect VideoGraph to GitHub to automatically import and sync documentation from your repositories. This keeps your docs versioned and up-to-date with every commit.
+
+<Steps>
+  <Step title="Create Integration" icon="github">
+    Navigate to Settings > Integrations in your VideoGraph dashboard.
+    
+    Click "Add GitHub" and authorize the app.
+  </Step>
+  <Step title="Select Repository" icon="package">
+    Choose the repo containing your Markdown docs.
+    
+    Specify the branch (e.g., `main`) and doc path (e.g., `docs/`).
+  </Step>
+  <Step title="Configure Sync" icon="settings">
+    Set sync frequency (e.g., on push) and enable auto-publish.
+    
+````bash
+# Example GitHub Action to trigger sync
+name: Sync Docs
+on: [push]
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Trigger VideoGraph Sync
+        run: curl -X POST https://api.example.com/v1/repos/sync \
+          -H "Authorization: Bearer YOUR_API_KEY" \
+          -d '{"repo": "your-org/your-repo", "branch": "main"}'
+````
+  </Step>
+</Steps>
+
+<Callout kind="tip">
+  Use branch protection rules in GitHub to review changes before syncing to VideoGraph.
+</Callout>
+
+## Webhook Setups for Updates
+
+Set up webhooks to notify external services when docs update. Common use cases include Slack notifications or CI/CD triggers.
+
+<Tabs>
+  <Tab title="Slack" icon="message-circle">
+    Configure a Slack Incoming Webhook URL.
+    
+    In VideoGraph Settings > Webhooks, add your endpoint.
+    
+    Select events like `doc.updated` or `page.published`.
+  </Tab>
+  <Tab title="Custom Endpoint" icon="server">
+    Point webhooks to your server for processing.
+    
+    VideoGraph sends JSON payloads with event details.
+  </Tab>
+</Tabs>
+
+Handle incoming webhooks securely:
+
+<CodeGroup tabs="Node.js,Python">
+  ```javascript
+  const express = require('express');
+  const app = express();
+  app.use(express.json());
+
+  app.post('/webhook', (req, res) => {
+    const event = req.headers['x-videograph-event'];
+    const payload = req.body;
+    
+    if (event === 'doc.updated') {
+      console.log(`Doc ${payload.doc_id} updated`);
+      // Notify team or trigger build
+    }
+    
+    res.status(200).send('OK');
+  });
+  ```
+  ```python
+  from flask import Flask, request
+  app = Flask(__name__)
+
+  @app.route('/webhook', methods=['POST'])
+  def webhook():
+      event = request.headers.get('X-Videograph-Event')
+      payload = request.json
+      
+      if event == 'doc.updated':
+          print(f"Doc {payload['doc_id']} updated")
+          # Notify or process
+      
+      return 'OK', 200
+  ```
+</CodeGroup>
+
+## Export Options
+
+Export your VideoGraph docs to other formats for sharing or archiving.
+
+<Tabs>
+  <Tab title="PDF" icon="file-text">
+    Generate print-ready PDFs.
+    
+    Use the dashboard export button or API:
+    
+````bash
+curl -X POST https://api.example.com/v1/docs/export/pdf \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -d '{"doc_ids": ["doc-123", "doc-456"]}'
+````
+  </Tab>
+  <Tab title="Markdown" icon="file">
+    Download raw Markdown files.
+    
+    Ideal for migrating to other platforms.
+  </Tab>
+  <Tab title="HTML" icon="globe">
+    Export static HTML for hosting.
+    
+    Includes styles and assets.
+  </Tab>
+</Tabs>
+
+## API Access for Custom Extensions
+
+Build powerful extensions using VideoGraph's REST API at `https://api.example.com/v1`.
+
+<ParamField path="doc_id" param-type="string" required="true">
+  Unique document identifier.
+</ParamField>
+
+<ParamField query="format" param-type="string" required="false">
+  Export format: `pdf`, `md`, `html`.
+</ParamField>
+
+<ParamField header="Authorization" param-type="string" required="true">
+  Bearer token: `Bearer YOUR_API_KEY`.
+</ParamField>
+
+<Expandable title="Advanced API Example" default-open="false">
+  Create a custom integration script:
+  
+````javascript
+const fetch = require('node-fetch');
+
+async function createDoc(title, content) {
+  const response = await fetch('https://api.example.com/v1/docs', {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer YOUR_API_KEY',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      title,
+      content,
+      tags: ['integration']
+    })
+  });
+  
+  return response.json();
+}
+````
+</Expandable>
+
+<Callout kind="info">
+  Review the full API reference in your dashboard for rate limits and pagination. Start with GitHub sync for quick wins.
+</Callout>
